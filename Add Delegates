@@ -1,0 +1,27 @@
+answer = [];
+
+var gdt = new GlideDateTime();
+
+var ManDels = new GlideRecord('sys_user_delegate');   // query delegate table
+ManDels.addQuery('user', '18688a5ddbf51f00061cf1e51d96198e');   // find manager's delegates
+ManDels.addQuery('ends', '>=', gdt);
+ManDels.addQuery('starts', '<=', gdt);   // Check for current delegates
+ManDels.query();
+while(ManDels.next()) {
+	answer.push(ManDels.delegate);
+}
+
+
+//Run the below script to test as a Background Script
+
+
+var gdt = new GlideDateTime();
+
+var ManDels = new GlideRecord('sys_user_delegate');   // query delegate table
+ManDels.addQuery('user', '????????????? add sys_id');   // find manager's delegates
+ManDels.addQuery('ends', '>=', gdt);
+ManDels.addQuery('starts', '<=', gdt);   // Check for current delegates
+ManDels.query();
+while(ManDels.next()) {
+	gs.print('Delegates Found: '+ManDels.delegate);
+}
